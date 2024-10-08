@@ -7,15 +7,14 @@ todo = ""
 todos = []
 
 while True:
-    option = input(optionPrompt)
-    option = option.lower()
+    option = input(optionPrompt).lower().strip()
     match option:
         case "add":
-            todo = input(todoPrompt)
-            todo = todo.capitalize()
+            todo = input(todoPrompt).capitalize().strip()
             todos.append(todo)
         case "show":
-            print(todos)
+            for item in todos:
+                print(item)
         case "exit":
             break
         case _:
