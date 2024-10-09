@@ -1,13 +1,15 @@
-optionPrompt = "Type add, edit, show or exit: "
-option = ""
-
-todoPrompt = "Enter a To-Do: "
 todo = ""
-
-numPrompt = "Which To-Do do you want to edit? "
-num = 0
+todoPrompt = "Enter a To-Do: "
 
 todos = []
+
+option = ""
+optionPrompt = "Type add, edit, show, complete or exit: "
+
+num = 0
+numPrompt = "Got it. Which one? "
+
+row = ""
 
 while True:
     option = input(optionPrompt).lower().strip()
@@ -21,8 +23,15 @@ while True:
             todos[num] = todo
         case "show":
             for i, item in enumerate(todos, start=1):
-                print(f"{i}. {item}")
+                row = f"{i}. {item}"
+                print(row)
+        case "complete":
+            num = int(input(numPrompt)) - 1
+            todo = todos.pop(num)
+            row = f"{todo} is marked as done and removed from the list."
+            print(row)
         case "exit":
             break
         case _:
-            print("Wrong input, try again.")
+            row = "Wrong input, try again."
+            print(row)
