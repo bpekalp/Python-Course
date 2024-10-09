@@ -4,7 +4,7 @@ todoPrompt = "Enter a To-Do: "
 optionPrompt = "Type add, edit, show, complete or exit: "
 numPrompt = "Got it. Which one? "
 
-filePath = "./data/.todos.txt"
+filePath = "data/.todos.txt"
 file = open(filePath, "r")
 file.close()
 
