@@ -20,8 +20,8 @@ while True:
             todo = input(todoPrompt).capitalize().strip()
             todos[num] = todo
         case "show":
-            for item in todos:
-                print(item)
+            for i, item in enumerate(todos, start=1):
+                print(f"{i}. {item}")
         case "exit":
             break
         case _:
