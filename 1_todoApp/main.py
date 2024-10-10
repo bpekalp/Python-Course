@@ -32,9 +32,10 @@ while True:
             todos = file.readlines()
             file.close()
 
-            todos = [todo.strip("\n") for todo in todos]
+            # todos = [todo.strip("\n") for todo in todos]
 
             for i, todo in enumerate(todos, start=1):
+                todo = todo.strip("\n")
                 row = f"{i}. {todo}"
                 print(row)
 
