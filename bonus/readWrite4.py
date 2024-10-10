@@ -1,4 +1,4 @@
-fileNames = ["doc.txt", "report.txt", "presentation.txt"]
+fileNames = [".doc.txt", ".report.txt", ".presentation.txt"]
 filePath = "bonus/files"
 
 for fileName in fileNames:
