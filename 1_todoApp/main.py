@@ -5,8 +5,6 @@ optionPrompt = "Type add, edit, show, complete or exit: "
 numPrompt = "Got it. Which one? "
 
 filePath = "data/.todos.txt"
-file = open(filePath, "r")
-file.close()
 
 while True:
     option = input(optionPrompt).lower().strip()
