@@ -162,7 +162,5 @@ cython_debug/
 #.idea/
 
 # Project Files
-.todos.txt
-.a.txt
-.b.txt
-.c.txt
+data/
+bonus/files/
