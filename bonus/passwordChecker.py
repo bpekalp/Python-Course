@@ -1,7 +1,4 @@
-upperCase = "QWERTYUIOPASDFGHJKLZXCVBNM"
-lowerCase = "qwertyuıopasdfghjklzxcvbnm"
-numbers = "1234567890"
-special = r"!'^+%&/()=?_,.<>£#$½{[]}\|;:>"
+import string
 
 while True:
 
@@ -15,23 +12,23 @@ while True:
             if len(password) > 8:
                 strength += 5
 
-            for letter in upperCase:
-                if letter in password:
+            for character in password:
+                if character.isupper():
                     strength += 5
                     break
 
-            for letter in lowerCase:
-                if letter in password:
+            for character in password:
+                if character.islower():
                     strength += 5
                     break
 
-            for number in numbers:
-                if number in password:
+            for character in password:
+                if character.isnumeric():
                     strength += 5
                     break
 
-            for character in special:
-                if character in password:
+            for character in password:
+                if character in string.punctuation:
                     strength += 5
                     break
 
