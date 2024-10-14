@@ -9,30 +9,32 @@ filePath = "data/.todos.txt"
 while True:
     option = input(optionPrompt).lower().strip()
 
-    if "add" in option:
+    if option.startswith("add"):
         with open(filePath, "r") as file:
             todos = file.readlines()
 
-        todo = option.lstrip("add").strip().capitalize() + "\n"
+        userIf = "add"
+        todo = option.lstrip(userIf).strip().capitalize() + "\n"
         todos.append(todo)
 
         with open(filePath, "w") as file:
             file.writelines(todos)
 
-    elif "edit" in option:
+    elif option.startswith("edit"):
         with open(filePath, "r") as file:
             todos = file.readlines()
 
-        numStr = option.lstrip("edit").strip()
+        userIf = "edit"
+        numStr = option.lstrip(userIf).strip()
         num = int(numStr) - 1
 
-        todo = input(todoPrompt).capitalize().strip() + "\n"
+        todo = input(todoPrompt).strip().capitalize() + "\n"
         todos[num] = todo
 
         with open(filePath, "w") as file:
             file.writelines(todos)
 
-    elif "show" in option:
+    elif option.startswith("show"):
         with open(filePath, "r") as file:
             todos = file.readlines()
 
@@ -42,11 +44,12 @@ while True:
             message = f"{i}. {todo}"
             print(message)
 
-    elif "complete" in option:
+    elif option.startswith("complete"):
         with open(filePath, "r") as file:
             todos = file.readlines()
 
-        numStr = option.lstrip("complete").strip()
+        userIf = "complete"
+        numStr = option.lstrip(userIf).strip()
         num = int(numStr) - 1
 
         todo = todos.pop(num).strip("\n")
@@ -56,7 +59,9 @@ while True:
         with open(filePath, "w") as file:
             file.writelines(todos)
 
-    elif "exit" in option:
+    elif option.startswith("exit"):
+        message = "Goodbye!"
+        print(message)
         break
 
     else:
