@@ -10,7 +10,11 @@ def averageOf(numbers):
 with open("bonus/files/.numbers.txt") as file:
     numbers = file.readlines()
 
-numbers = [float(number) for number in numbers]
-average = averageOf(numbers)
+try:
+    numbers = [float(number) for number in numbers]
+    average = averageOf(numbers)
 
-print(average)
+    print(average)
+
+except ValueError:
+    print("The file contains non numeric values.")
