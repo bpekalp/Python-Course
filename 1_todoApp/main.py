@@ -6,85 +6,44 @@ numPrompt = "Got it. Which one? "
 
 filePath = "data/.todos.txt"
 
-
-def getOptionFromUser(optionPrompt):
+while True:
     option = input(optionPrompt).lower().strip()
-    return option
 
+    if "add" in option:
+        with open(filePath, "r") as file:
+            todos = file.readlines()
 
-def readTodos(filePath):
-    with open(filePath, "r") as file:
-        todos = file.readlines()
-    return todos
+        todo = option.lstrip("add").strip().capitalize() + "\n"
+        todos.append(todo)
 
+        with open(filePath, "w") as file:
+            file.writelines(todos)
 
-def writeTodos(todos, filePath):
-    with open(filePath, "w") as file:
-        file.writelines(todos)
+    elif "edit" in option:
+        num = int(input(numPrompt)) - 1
+        todo = input(todoPrompt).capitalize().strip()
+        todos[num] = todo
 
+    elif "show" in option:
+        with open(filePath, "r") as file:
+            todos = file.readlines()
 
-def getTodoFromUser(todoPrompt):
-    todo = input(todoPrompt).capitalize().strip() + "\n"
-    return todo
+        # todos = [todo.strip("\n") for todo in todos]
 
+        for i, todo in enumerate(todos, start=1):
+            todo = todo.strip("\n")
+            row = f"{i}. {todo}"
+            print(row)
 
-def getIndexFromUser(numPrompt):
-    num = int(input(numPrompt)) - 1
-    return num
-
-
-def displayTodos(todos):
-    # todos = [todo.strip("\n") for todo in todos]
-
-    for i, todo in enumerate(todos, start=1):
-        todo = todo.strip("\n")
-        row = f"{i}. {todo}"
+    elif "complete" in option:
+        num = int(input(numPrompt)) - 1
+        todo = todos.pop(num)
+        row = f"{todo} is marked as done and removed from the list."
         print(row)
 
+    elif "exit" in option:
+        break
 
-def popTodo(todos, num):
-    todo = todos.pop(num).capitalize().strip("\n")
-    return todo
-
-
-while True:
-    option = getOptionFromUser(optionPrompt)
-
-    match option:
-        case "add":
-            todos = readTodos(filePath)
-
-            todo = getTodoFromUser(todoPrompt)
-            todos.append(todo)
-
-            writeTodos(todos, filePath)
-
-        case "edit":
-            todos = readTodos(filePath)
-
-            num = getIndexFromUser(numPrompt)
-            todo = getTodoFromUser(todoPrompt)
-            todos[num] = todo
-
-            writeTodos(todos, filePath)
-
-        case "show":
-            todos = readTodos(filePath)
-            displayTodos(todos)
-
-        case "complete":
-            todos = readTodos(filePath)
-
-            num = getIndexFromUser(numPrompt)
-            todo = popTodo(todos, num)
-            row = f"{todo} is marked as done and removed from the list."
-            print(row)
-
-            writeTodos(todos, filePath)
-
-        case "exit":
-            break
-
-        case _:
-            row = "Wrong input, try again."
-            print(row)
+    else:
+        row = "Wrong input, try again."
+        print(row)
