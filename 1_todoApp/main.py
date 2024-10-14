@@ -21,18 +21,28 @@ while True:
             file.writelines(todos)
 
     elif option.startswith("edit"):
-        with open(filePath, "r") as file:
-            todos = file.readlines()
+        try:
+            with open(filePath, "r") as file:
+                todos = file.readlines()
 
-        userIf = "edit"
-        numStr = option.lstrip(userIf).strip()
-        num = int(numStr) - 1
+            userIf = "edit"
+            numStr = option.lstrip(userIf).strip()
+            num = int(numStr) - 1
 
-        todo = input(todoPrompt).strip().capitalize() + "\n"
-        todos[num] = todo
+            todo = input(todoPrompt).strip().capitalize() + "\n"
+            todos[num] = todo
 
-        with open(filePath, "w") as file:
-            file.writelines(todos)
+            with open(filePath, "w") as file:
+                file.writelines(todos)
+        except ValueError:
+            message = "Usage: edit <To-Do number to edit>"
+            print(message)
+            continue
+
+        except IndexError:
+            message = "The number was out of bounds of the To-Do list."
+            print(message)
+            continue
 
     elif option.startswith("show"):
         with open(filePath, "r") as file:
@@ -45,19 +55,30 @@ while True:
             print(message)
 
     elif option.startswith("complete"):
-        with open(filePath, "r") as file:
-            todos = file.readlines()
+        try:
+            with open(filePath, "r") as file:
+                todos = file.readlines()
 
-        userIf = "complete"
-        numStr = option.lstrip(userIf).strip()
-        num = int(numStr) - 1
+            userIf = "complete"
+            numStr = option.lstrip(userIf).strip()
+            num = int(numStr) - 1
 
-        todo = todos.pop(num).strip("\n")
-        message = f"{todo} is marked as done and removed from the list."
-        print(message)
+            todo = todos.pop(num).strip("\n")
+            message = f"{todo} is marked as done and removed from the list."
+            print(message)
 
-        with open(filePath, "w") as file:
-            file.writelines(todos)
+            with open(filePath, "w") as file:
+                file.writelines(todos)
+
+        except ValueError:
+            message = "Usage: complete <To-Do number to complete>"
+            print(message)
+            continue
+
+        except IndexError:
+            message = "The number was out of bounds of the To-Do list."
+            print(message)
+            continue
 
     elif option.startswith("exit"):
         message = "Goodbye!"
