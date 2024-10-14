@@ -6,34 +6,47 @@ numPrompt = "Got it. Which one? "
 
 filePath = "data/.todos.txt"
 
+
+def readTodos(filePath):
+    with open(filePath, "r") as file:
+        todos = file.readlines()
+    return todos
+
+
+def writeTodos(todos, filePath):
+    with open(filePath, "w") as file:
+        file.writelines(todos)
+
+
+def numToString(option, userIf):
+    numStr = option.lstrip(userIf).strip()
+    num = int(numStr) - 1
+    return num
+
+
 while True:
     option = input(optionPrompt).lower().strip()
 
     if option.startswith("add"):
-        with open(filePath, "r") as file:
-            todos = file.readlines()
+        todos = readTodos(filePath)
 
         userIf = "add"
         todo = option.lstrip(userIf).strip().capitalize() + "\n"
         todos.append(todo)
 
-        with open(filePath, "w") as file:
-            file.writelines(todos)
+        writeTodos(todos, filePath)
 
     elif option.startswith("edit"):
         try:
-            with open(filePath, "r") as file:
-                todos = file.readlines()
+            todos = readTodos(filePath)
 
             userIf = "edit"
-            numStr = option.lstrip(userIf).strip()
-            num = int(numStr) - 1
+            num = numToString(option, userIf)
 
             todo = input(todoPrompt).strip().capitalize() + "\n"
             todos[num] = todo
 
-            with open(filePath, "w") as file:
-                file.writelines(todos)
+            writeTodos(todos, filePath)
         except ValueError:
             message = "Usage: edit <To-Do number to edit>"
             print(message)
@@ -45,8 +58,7 @@ while True:
             continue
 
     elif option.startswith("show"):
-        with open(filePath, "r") as file:
-            todos = file.readlines()
+        todos = readTodos(filePath)
 
         # todos = [todo.strip("\n") for todo in todos]
         for i, todo in enumerate(todos, start=1):
@@ -56,19 +68,16 @@ while True:
 
     elif option.startswith("complete"):
         try:
-            with open(filePath, "r") as file:
-                todos = file.readlines()
+            todos = readTodos(filePath)
 
             userIf = "complete"
-            numStr = option.lstrip(userIf).strip()
-            num = int(numStr) - 1
+            num = numToString(option, userIf)
 
             todo = todos.pop(num).strip("\n")
             message = f"{todo} is marked as done and removed from the list."
             print(message)
 
-            with open(filePath, "w") as file:
-                file.writelines(todos)
+            writeTodos(todos, filePath)
 
         except ValueError:
             message = "Usage: complete <To-Do number to complete>"
