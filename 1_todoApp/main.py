@@ -47,6 +47,7 @@ while True:
             todos[num] = todo
 
             writeTodos(todos, filePath)
+
         except ValueError:
             message = "Usage: edit <To-Do number to edit>"
             print(message)
