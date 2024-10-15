@@ -10,9 +10,14 @@ filePath = "data/.todos.txt"
 
 
 def readTodos(filePath):
-    with open(filePath, "r") as file:
-        todos = file.readlines()
-    return todos
+    try:
+        with open(filePath, "r") as file:
+            todos = file.readlines()
+        return todos
+    except FileNotFoundError:
+        print("File not found. Creating one...")
+        writeTodos([], filePath)
+        return []
 
 
 def writeTodos(todos, filePath):
