@@ -1,10 +1,8 @@
 def convertToCm(length):
     length = length.split("'")
     feet, inches = float(length[0]), float(length[1])
-    feet *= 30.48
-    inches *= 2.54
 
-    cm = feet + inches
+    cm = feet * 30.48 + inches * 2.54
     return cm
 
 
