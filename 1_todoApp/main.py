@@ -1,7 +1,9 @@
 todos = []
 
 todoPrompt = "Enter a To-Do: "
-optionPrompt = "Type add, edit, show, complete or exit: "
+optionPrompt = (
+    "Usage: add <To-Do>, edit <To-Do number>, show, complete <To-Do number> or exit: "
+)
 numPrompt = "Got it. Which one? "
 
 filePath = "data/.todos.txt"
