@@ -20,7 +20,7 @@ def writeTodos(todos, filePath):
         file.writelines(todos)
 
 
-def numToString(option, userIf):
+def stringToNum(option, userIf):
     numStr = option.lstrip(userIf).strip()
     num = int(numStr) - 1
     return num
@@ -44,7 +44,7 @@ def main():
                 todos = readTodos(filePath)
 
                 userIf = "edit"
-                num = numToString(option, userIf)
+                num = stringToNum(option, userIf)
 
                 todo = input(todoPrompt).strip().capitalize() + "\n"
                 todos[num] = todo
@@ -75,7 +75,7 @@ def main():
                 todos = readTodos(filePath)
 
                 userIf = "complete"
-                num = numToString(option, userIf)
+                num = stringToNum(option, userIf)
 
                 todo = todos.pop(num).strip("\n")
                 message = f"{todo} is marked as done and removed from the list."
