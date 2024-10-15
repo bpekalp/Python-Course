@@ -9,26 +9,26 @@ numPrompt = "Got it. Which one? "
 filePath = "data/.todos.txt"
 
 
-def readTodos(filePath):
+def readTodos(_filePath):
     try:
-        with open(filePath, "r") as file:
-            todos = file.readlines()
-        return todos
+        with open(_filePath, "r") as _file:
+            _todos = _file.readlines()
+        return _todos
     except FileNotFoundError:
         print("File not found. Creating one...")
-        writeTodos([], filePath)
+        writeTodos([], _filePath)
         return []
 
 
-def writeTodos(todos, filePath):
-    with open(filePath, "w") as file:
-        file.writelines(todos)
+def writeTodos(_todos, _filePath):
+    with open(_filePath, "w") as _file:
+        _file.writelines(_todos)
 
 
-def stringToNum(option, userIf):
-    numStr = option.lstrip(userIf).strip()
-    num = int(numStr) - 1
-    return num
+def stringToNum(_option, _userIf):
+    _numStr = _option.lstrip(_userIf).strip()
+    _num = int(_numStr) - 1
+    return _num
 
 
 def main():
