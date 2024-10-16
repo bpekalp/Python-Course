@@ -3,6 +3,7 @@
 
 import readWrite
 import stringToNum
+import dateTimeFormatter
 
 todos = []
 
@@ -13,6 +14,9 @@ optionPrompt = (
 numPrompt = "Got it. Which one? "
 
 filePath = "data/.todos.txt"
+
+message = dateTimeFormatter.formatDateTime()
+print(message)
 
 
 def main():
