@@ -12,3 +12,11 @@ def stringToNum(_option, _userIf):
     _numStr = _option.lstrip(_userIf).strip()
     _num = int(_numStr) - 1
     return _num
+
+
+def main():
+    print(f"stringToNum's name is: {__name__}")
+
+
+if __name__ == "__main__":
+    main()

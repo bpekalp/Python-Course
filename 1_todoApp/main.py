@@ -1,5 +1,8 @@
-from readWrite import readTodos, writeTodos
-from stringToNum import stringToNum
+# from readWrite import readTodos, writeTodos
+# from stringToNum import stringToNum
+
+import readWrite
+import stringToNum
 
 todos = []
 
@@ -17,25 +20,25 @@ def main():
         option = input(optionPrompt).lower().strip()
 
         if option.startswith("add"):
-            todos = readTodos(filePath)
+            todos = readWrite.readTodos(filePath)
 
             userIf = "add"
             todo = option.lstrip(userIf).strip().capitalize() + "\n"
             todos.append(todo)
 
-            writeTodos(todos, filePath)
+            readWrite.writeTodos(todos, filePath)
 
         elif option.startswith("edit"):
             try:
-                todos = readTodos(filePath)
+                todos = readWrite.readTodos(filePath)
 
                 userIf = "edit"
-                num = stringToNum(option, userIf)
+                num = stringToNum.stringToNum(option, userIf)
 
                 todo = input(todoPrompt).strip().capitalize() + "\n"
                 todos[num] = todo
 
-                writeTodos(todos, filePath)
+                readWrite.writeTodos(todos, filePath)
 
             except ValueError:
                 message = "Usage: edit <To-Do number to edit>"
@@ -48,7 +51,7 @@ def main():
                 continue
 
         elif option.startswith("show"):
-            todos = readTodos(filePath)
+            todos = readWrite.readTodos(filePath)
 
             # todos = [todo.strip("\n") for todo in todos]
             for i, todo in enumerate(todos, start=1):
@@ -58,16 +61,16 @@ def main():
 
         elif option.startswith("complete"):
             try:
-                todos = readTodos(filePath)
+                todos = readWrite.readTodos(filePath)
 
                 userIf = "complete"
-                num = stringToNum(option, userIf)
+                num = stringToNum.stringToNum(option, userIf)
 
                 todo = todos.pop(num).strip("\n")
                 message = f"{todo} is marked as done and removed from the list."
                 print(message)
 
-                writeTodos(todos, filePath)
+                readWrite.writeTodos(todos, filePath)
 
             except ValueError:
                 message = "Usage: complete <To-Do number to complete>"

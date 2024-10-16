@@ -27,3 +27,11 @@ def writeTodos(_todos, _filePath):
     """
     with open(_filePath, "w") as _file:
         _file.writelines(_todos)
+
+
+def main():
+    print(f"readWrite's name is: {__name__}")
+
+
+if __name__ == "__main__":
+    main()
