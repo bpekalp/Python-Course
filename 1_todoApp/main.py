@@ -1,4 +1,5 @@
-from func import readTodos, writeTodos, stringToNum
+from readWrite import readTodos, writeTodos
+from stringToNum import stringToNum
 
 todos = []
 
