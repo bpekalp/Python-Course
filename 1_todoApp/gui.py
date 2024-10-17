@@ -1,6 +1,6 @@
-import readWrite as rw
-import stringToNum as stn
-import dateTimeFormatter as dtf
+import func.readWrite as rw
+import func.stringToNum as stn
+import func.dateTimeFormatter as dtf
 import FreeSimpleGUI as gui
 
 title = "Coolest To-Do App Ever!"
