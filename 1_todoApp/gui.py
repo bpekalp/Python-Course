@@ -15,8 +15,11 @@ labelToDoText = sg.Text(key="kLabelToDo", text="Enter a To-Do")
 toDoText = sg.InputText(key="kToDo", tooltip="Here goes your To-Do!")
 
 addButton = sg.Button(key="kAdd", button_text="Add")
+editButton = sg.Button(key="kEdit", button_text="Edit")
+completeButton = sg.Button(key="kComplete", button_text="Complete")
+exitButton = sg.Button(key="kExit", button_text="Exit Program")
 
-layout = [[today], [labelToDoText], [toDoText, addButton]]
+layout = [[today], [labelToDoText], [toDoText, addButton], [exitButton]]
 
 
 def main():
@@ -33,6 +36,15 @@ def main():
                 todos.append(todo)
 
                 rw.writeTodos(todos, filePath)
+
+            case "kEdit":
+                print()
+
+            case "kComplete":
+                print()
+
+            case "kExit":
+                break
 
             case sg.WIN_CLOSED:
                 break
