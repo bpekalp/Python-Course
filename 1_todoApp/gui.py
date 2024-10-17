@@ -11,23 +11,26 @@ filePath = "data/.todos.txt"
 
 title = "Coolest To-Do App Ever!"
 
-today = sg.Text(key="kToday", text=dtf.formatDateTime())
+labelToday = sg.Text(key="lbl_Today", text=dtf.formatDateTime())
 
-labelTodoText = sg.Text(key="kLabelTodo", text="Enter a To-Do")
-todoText = sg.InputText(key="kTodo", tooltip="Here goes your To-Do!")
+labelTodoText = sg.Text(key="lbl_Todo", text="Enter a To-Do")
+todoText = sg.InputText(key="tb_Todo", tooltip="Here goes your To-Do!")
 
-labelTodosList = sg.Text(key="kLabelTodos")
+labelTodosList = sg.Text(key="lbl_Todos")
 todosList = sg.Listbox(
-    key="kTodos", values=rw.readTodos(filePath), enable_events=True, size=(36, 12)
+    key="listBox_Todos",
+    values=rw.readTodos(filePath),
+    enable_events=True,
+    size=(36, 12),
 )
 
-addButton = sg.Button(key="kAdd", button_text="Add")
-editButton = sg.Button(key="kEdit", button_text="Edit")
-completeButton = sg.Button(key="kComplete", button_text="Complete")
-exitButton = sg.Button(key="kExit", button_text="Exit Program")
+addButton = sg.Button(key="btn_Add", button_text="Add")
+editButton = sg.Button(key="btn_Edit", button_text="Edit")
+completeButton = sg.Button(key="btn_Complete", button_text="Complete")
+exitButton = sg.Button(key="btn_Exit", button_text="Exit Program")
 
 layout = [
-    [today],
+    [labelToday],
     [labelTodoText],
     [todoText, addButton],
     [labelTodosList],
@@ -39,43 +42,44 @@ layout = [
 def main():
     window = sg.Window(title=title, layout=layout, font=("Segoe UI", 12))
     while True:
-        event, value = window.read()
-        print(f"Event: {event}")
-        print(f"Todo List Value: {value["kTodos"]}")
-        print(f"All the Values: {value}")
+        eventName, values = window.read()
+        print(f"Event Name (key=): {eventName}")
+        print(f"Todo List Value (values[key]): {values["listBox_Todos"]}")
+        print(f"All the Values (values): {values}")
+        print()
 
-        match event:
-            case "kTodos":
-                todo = str(value["kTodos"][0]).strip("\n")
+        match eventName:
+            case "listBox_Todos":
+                todo = str(values["listBox_Todos"][0]).strip("\n")
 
-                uw.updateTodoBox(window, "kTodo", todo)
+                uw.updateTodoBox(window, "tb_Todo", todo)
 
-            case "kAdd":
+            case "btn_Add":
                 todos = rw.readTodos(filePath)
 
-                todo = tf.textBoxToTodo(value, "kTodo")
+                todo = tf.textBoxToTodo(values, "tb_Todo")
                 todos.append(todo)
 
                 rw.writeTodos(todos, filePath)
 
-                uw.updateTodoList(window, "kTodos", todos)
+                uw.updateTodoList(window, "listBox_Todos", todos)
 
-            case "kEdit":
+            case "btn_Edit":
                 todos = rw.readTodos(filePath)
 
-                todo = tf.textBoxToTodo(value, "kTodo")
-                tempTodo = value["kTodos"][0]
+                todo = tf.textBoxToTodo(values, "tb_Todo")
+                tempTodo = values["listBox_Todos"][0]
                 index = todos.index(tempTodo)
                 todos[index] = todo
 
                 rw.writeTodos(todos)
 
-                uw.updateTodoList(window, "kTodos", todos)
+                uw.updateTodoList(window, "listBox_Todos", todos)
 
-            case "kComplete":
+            case "btn_Complete":
                 print()
 
-            case "kExit":
+            case "btn_Exit":
                 break
 
             case sg.WIN_CLOSED:
