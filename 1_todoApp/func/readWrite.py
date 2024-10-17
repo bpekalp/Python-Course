@@ -1,4 +1,7 @@
-def readTodos(_filePath):
+FILEPATH = "data/.todos.txt"
+
+
+def readTodos(_filePath=FILEPATH):
     """Reads specified file and returns the content as a list.
 
     Args:
@@ -17,7 +20,7 @@ def readTodos(_filePath):
         return []
 
 
-def writeTodos(_todos, _filePath):
+def writeTodos(_todos, _filePath=FILEPATH):
     """Writes the contents of the current To-Do list that the user sees
     into the specified file.
 
