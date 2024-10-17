@@ -1,5 +1,6 @@
 import func.readWrite as rw
 import func.textFormatter as tf
+import func.updateWindow as uw
 import func.stringToNum as stn
 import func.dateTimeFormatter as dtf
 import FreeSimpleGUI as sg
@@ -45,8 +46,9 @@ def main():
 
         match event:
             case "kTodos":
-                todo = value["kTodos"][0]
-                window["kTodo"].update(value=todo)
+                todo = str(value["kTodos"][0]).strip("\n")
+
+                uw.updateTodoBox(window, "kTodo", todo)
 
             case "kAdd":
                 todos = rw.readTodos(filePath)
@@ -56,7 +58,7 @@ def main():
 
                 rw.writeTodos(todos, filePath)
 
-                window["kTodos"].update(values=todos)
+                uw.updateTodoList(window, "kTodos", todos)
 
             case "kEdit":
                 todos = rw.readTodos(filePath)
@@ -68,7 +70,7 @@ def main():
 
                 rw.writeTodos(todos)
 
-                window["kTodos"].update(values=todos)
+                uw.updateTodoList(window, "kTodos", todos)
 
             case "kComplete":
                 print()
