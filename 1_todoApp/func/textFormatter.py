@@ -8,5 +8,5 @@ def textBoxToTodo(_value, _key):
     Returns:
         str: Returns the formatted To-Do item.
     """
-    todo = str(_value[_key]).strip().capitalize() + "\n"
+    todo = str(_value[_key]).strip().title() + "\n"
     return todo
