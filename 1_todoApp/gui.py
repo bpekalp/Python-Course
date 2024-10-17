@@ -1,22 +1,22 @@
 import func.readWrite as rw
 import func.stringToNum as stn
 import func.dateTimeFormatter as dtf
-import FreeSimpleGUI as gui
+import FreeSimpleGUI as sg
 
 title = "Coolest To-Do App Ever!"
 
-today = gui.Text(dtf.formatDateTime())
+today = sg.Text(dtf.formatDateTime())
 
-labelTextBox = gui.Text("Enter a To-Do")
-textBox = gui.InputText(tooltip="Here goes your To-Do!")
+labelTextBox = sg.Text("Enter a To-Do")
+textBox = sg.InputText(tooltip="Here goes your To-Do!")
 
-addButton = gui.Button("Add")
+addButton = sg.Button("Add")
 
 layout = [[today], [labelTextBox], [textBox, addButton]]
 
 
 def main():
-    window = gui.Window(title=title, layout=layout)
+    window = sg.Window(title=title, layout=layout)
     window.read()
     window.close()
 

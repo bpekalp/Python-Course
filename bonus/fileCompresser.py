@@ -1,18 +1,18 @@
-import FreeSimpleGUI as gui
+import FreeSimpleGUI as sg
 
-filesTextLabel = gui.Text("Select files to compress")
-filesText = gui.Input()
-filesButton = gui.FilesBrowse("Browse Files")
+filesTextLabel = sg.Text("Select files to compress")
+filesText = sg.Input()
+filesButton = sg.FilesBrowse("Browse Files")
 
-zipTextLabel = gui.Text("Select destination for .zip file")
-zipText = gui.Input()
-zipButton = gui.FolderBrowse("Browse Folder")
+zipTextLabel = sg.Text("Select destination for .zip file")
+zipText = sg.Input()
+zipButton = sg.FolderBrowse("Browse Folder")
 
 layout = [[filesTextLabel, filesText, filesButton], [zipTextLabel, zipText, zipButton]]
 
 
 def main():
-    window = gui.Window(title="Best compresser!", layout=layout)
+    window = sg.Window(title="Best compresser!", layout=layout)
     window.read()
     window.close()
 
