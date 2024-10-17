@@ -1,5 +1,5 @@
-import parser
-import converter
+import bonus.func.parser as parser
+import bonus.func.converter as converter
 
 while True:
     option = input("Type enter or exit: ")
