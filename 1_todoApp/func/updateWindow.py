@@ -1,8 +1,8 @@
 def updateTodoBox(_window, _key, _value):
-    """Updates the contents of FreeEasyGUI window.
+    """Updates the contents of FreeSimpleGUI window.
 
     Args:
-        _window (FreeEasyGUI.window): Instance of a window.
+        _window (FreeSimpleGUI.window): Instance of a window.
         _key (str): Dictionary item inside the window instance.
         _value (list): List that will be inserted into window instance.
     """
@@ -10,10 +10,10 @@ def updateTodoBox(_window, _key, _value):
 
 
 def updateTodoList(_window, _key, _value):
-    """Updates the contents of FreeEasyGUI window.
+    """Updates the contents of FreeSimpleGUI window.
 
     Args:
-        _window (FreeEasyGUI.window): Instance of a window.
+        _window (FreeSimpleGUI.window): Instance of a window.
         _key (str): Dictionary item inside the window instance.
         _value (list): List that will be inserted into window instance.
     """
