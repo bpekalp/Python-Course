@@ -21,7 +21,7 @@ todosList = sg.Listbox(
     key="listBox_Todos",
     values=rw.readTodos(filePath),
     enable_events=True,
-    size=(36, 12),
+    size=(60, 15),
 )
 
 addButton = sg.Button(key="btn_Add", button_text="Add")
