@@ -1,6 +1,7 @@
 import func.readWrite as rw
 import func.textFormatter as tf
 import func.updateWindow as uw
+import func.indexer as ir
 import func.stringToNum as stn
 import func.dateTimeFormatter as dtf
 import FreeSimpleGUI as sg
@@ -52,9 +53,12 @@ def main():
 
         match eventName:
             case "listBox_Todos":
-                todo = str(values["listBox_Todos"][0]).strip("\n")
+                try:
+                    todo = str(values["listBox_Todos"][0]).strip("\n")
+                    uw.updateTodoBox(window, "tb_Todo", todo)
 
-                uw.updateTodoBox(window, "tb_Todo", todo)
+                except IndexError:
+                    print("IndexError: list index out of range")
 
             case "btn_Add":
                 todos = rw.readTodos(filePath)
@@ -63,23 +67,33 @@ def main():
                 todos.append(todo)
 
                 rw.writeTodos(todos, filePath)
-
                 uw.updateTodoList(window, "listBox_Todos", todos)
 
             case "btn_Edit":
-                todos = rw.readTodos(filePath)
+                try:
+                    todos = rw.readTodos(filePath)
 
-                todo = tf.textBoxToTodo(values, "tb_Todo")
-                tempTodo = values["listBox_Todos"][0]
-                index = todos.index(tempTodo)
-                todos[index] = todo
+                    todo = tf.textBoxToTodo(values, "tb_Todo")
+                    index = ir.getTodoIndex(values, "listBox_Todos", todos)
+                    todos[index] = todo
 
-                rw.writeTodos(todos)
+                    rw.writeTodos(todos)
+                    uw.updateTodoList(window, "listBox_Todos", todos)
 
-                uw.updateTodoList(window, "listBox_Todos", todos)
+                except IndexError:
+                    print("IndexError: list index out of range")
 
             case "btn_Complete":
-                print()
+                try:
+                    todos = rw.readTodos(filePath)
+
+                    index = ir.getTodoIndex(values, "listBox_Todos", todos)
+                    popped = todos.pop(index).strip("\n")
+
+                    rw.writeTodos(todos)
+                    uw.updateTodoList(window, "listBox_Todos", todos)
+                except IndexError:
+                    print("IndexError: list index out of range")
 
     window.close()
 
