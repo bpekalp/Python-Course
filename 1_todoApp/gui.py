@@ -58,7 +58,9 @@ def main():
                     uw.updateTodoBox(window, "tb_Todo", todo)
 
                 except IndexError:
-                    print("IndexError: list index out of range")
+                    popup = sg.popup_ok(
+                        "Please add or select a To-Do first.", title="Oops!"
+                    )
 
             case "btn_Add":
                 todos = rw.readTodos(filePath)
@@ -81,7 +83,9 @@ def main():
                     uw.updateTodoList(window, "listBox_Todos", todos)
 
                 except IndexError:
-                    print("IndexError: list index out of range")
+                    popup = sg.popup_ok(
+                        "Please add or select a To-Do first.", title="Oops!"
+                    )
 
             case "btn_Complete":
                 try:
@@ -93,7 +97,9 @@ def main():
                     rw.writeTodos(todos)
                     uw.updateTodoList(window, "listBox_Todos", todos)
                 except IndexError:
-                    print("IndexError: list index out of range")
+                    popup = sg.popup_ok(
+                        "Please add or select a To-Do first.", title="Oops!"
+                    )
 
     window.close()
 
