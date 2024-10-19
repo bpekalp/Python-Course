@@ -2,7 +2,6 @@ import func.readWrite as rw
 import func.textFormatter as tf
 import func.updateWindow as uw
 import func.indexer as ir
-import func.stringToNum as stn
 import func.dateTimeFormatter as dtf
 import FreeSimpleGUI as sg
 
