@@ -44,9 +44,11 @@ def main():
     while True:
         eventName, values = window.read()
         print(f"Event Name (key=): {eventName}")
-        print(f"Todo List Value (values[key]): {values["listBox_Todos"]}")
         print(f"All the Values (values): {values}")
         print()
+
+        if eventName in (None, sg.WIN_CLOSED, "btn_Exit"):
+            break
 
         match eventName:
             case "listBox_Todos":
@@ -78,12 +80,6 @@ def main():
 
             case "btn_Complete":
                 print()
-
-            case "btn_Exit":
-                break
-
-            case sg.WIN_CLOSED:
-                break
 
     window.close()
 
