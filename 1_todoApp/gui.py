@@ -4,11 +4,18 @@ import func.windowUpdater as wu
 import func.indexer as ir
 import func.dateTimeFormatter as dtf
 import FreeSimpleGUI as sg
-
-sg.theme("DarkTeal6")
+import os
 
 todos = []
 filePath = "data/.todos.txt"
+
+if not os.path.exists(os.path.dirname(filePath)):
+    os.makedirs(os.path.dirname(filePath))
+
+if not os.path.exists("data/.todos.txt"):
+    rw.writeTodos(todos, filePath)
+
+sg.theme("DarkTeal6")
 
 title = "Coolest To-Do App Ever!"
 
