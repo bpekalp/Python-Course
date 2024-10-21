@@ -1,6 +1,6 @@
 import func.readWrite as rw
 import func.textFormatter as tf
-import func.updateWindow as uw
+import func.windowUpdater as wu
 import func.indexer as ir
 import func.dateTimeFormatter as dtf
 import FreeSimpleGUI as sg
@@ -10,7 +10,8 @@ filePath = "data/.todos.txt"
 
 title = "Coolest To-Do App Ever!"
 
-labelToday = sg.Text(key="lbl_Today", text=dtf.formatDateTime())
+today = dtf.formatDateTime()
+labelToday = sg.Text(key="lbl_Today", text=today)
 
 labelTodoText = sg.Text(key="lbl_Todo", text="Enter a To-Do")
 todoText = sg.InputText(key="tb_Todo", tooltip="Here goes your To-Do!")
@@ -41,7 +42,10 @@ layout = [
 def main():
     window = sg.Window(title=title, layout=layout, font=("Segoe UI", 12))
     while True:
-        eventName, values = window.read()
+        eventName, values = window.read(timeout=1000)
+
+        today = dtf.formatDateTime()
+        wu.updateWindow(window, "lbl_Today", "text", today)
         print(f"Event Name (key=): {eventName}")
         print(f"All the Values (values): {values}")
         print()
@@ -53,11 +57,13 @@ def main():
             case "listBox_Todos":
                 try:
                     todo = str(values["listBox_Todos"][0]).strip("\n")
-                    uw.updateTodoBox(window, "tb_Todo", todo)
+                    wu.updateWindow(window, "tb_Todo", "text", todo)
 
                 except IndexError:
                     popup = sg.popup_ok(
-                        "Please add or select a To-Do first.", title="Oops!"
+                        "Please add or select a To-Do first.",
+                        title="Oops!",
+                        font=("Segoe UI", 12),
                     )
 
             case "btn_Add":
@@ -67,7 +73,7 @@ def main():
                 todos.append(todo)
 
                 rw.writeTodos(todos, filePath)
-                uw.updateTodoList(window, "listBox_Todos", todos)
+                wu.updateWindow(window, "listBox_Todos", "list", todos)
 
             case "btn_Edit":
                 try:
@@ -78,11 +84,13 @@ def main():
                     todos[index] = todo
 
                     rw.writeTodos(todos)
-                    uw.updateTodoList(window, "listBox_Todos", todos)
+                    wu.updateWindow(window, "listBox_Todos", "list", todos)
 
                 except IndexError:
                     popup = sg.popup_ok(
-                        "Please add or select a To-Do first.", title="Oops!"
+                        "Please add or select a To-Do first.",
+                        title="Oops!",
+                        font=("Segoe UI", 12),
                     )
 
             case "btn_Complete":
@@ -93,11 +101,13 @@ def main():
                     popped = todos.pop(index).strip("\n")
 
                     rw.writeTodos(todos)
-                    uw.updateTodoList(window, "listBox_Todos", todos)
-                    uw.updateTodoBox(window, "tb_Todo", "")
+                    wu.updateWindow(window, "listBox_Todos", "list", todos)
+                    wu.updateWindow(window, "tb_Todo", "text", "")
                 except IndexError:
                     popup = sg.popup_ok(
-                        "Please add or select a To-Do first.", title="Oops!"
+                        "Please add or select a To-Do first.",
+                        title="Oops!",
+                        font=("Segoe UI", 12),
                     )
 
     window.close()
