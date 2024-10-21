@@ -5,6 +5,8 @@ import func.indexer as ir
 import func.dateTimeFormatter as dtf
 import FreeSimpleGUI as sg
 
+sg.theme("DarkTeal6")
+
 todos = []
 filePath = "data/.todos.txt"
 
@@ -42,13 +44,13 @@ layout = [
 def main():
     window = sg.Window(title=title, layout=layout, font=("Segoe UI", 12))
     while True:
-        eventName, values = window.read(timeout=1000)
+        eventName, values = window.read(timeout=500)
 
         today = dtf.formatDateTime()
         wu.updateWindow(window, "lbl_Today", "text", today)
-        print(f"Event Name (key=): {eventName}")
-        print(f"All the Values (values): {values}")
-        print()
+        # print(f"Event Name (key=): {eventName}")
+        # print(f"All the Values (values): {values}")
+        # print()
 
         if eventName in (None, sg.WIN_CLOSED, "btn_Exit"):
             break
