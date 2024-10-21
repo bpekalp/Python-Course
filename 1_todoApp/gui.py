@@ -6,7 +6,6 @@ import func.dateTimeFormatter as dtf
 import FreeSimpleGUI as sg
 
 todos = []
-
 filePath = "data/.todos.txt"
 
 title = "Coolest To-Do App Ever!"
