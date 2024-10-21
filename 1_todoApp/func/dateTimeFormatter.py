@@ -22,6 +22,6 @@ def formatDateTime():
     Returns:
         str: Returns a formatted string to greet the users.
     """
-    dateTime = time.strftime("%B %d, %Y - %H:%M")
+    dateTime = time.strftime("%B %d, %Y - %H:%M:%S")
     message = f"Hello! It's {dateTime}"
     return message
