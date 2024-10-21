@@ -94,6 +94,7 @@ def main():
 
                     rw.writeTodos(todos)
                     uw.updateTodoList(window, "listBox_Todos", todos)
+                    uw.updateTodoBox(window, "tb_Todo", "")
                 except IndexError:
                     popup = sg.popup_ok(
                         "Please add or select a To-Do first.", title="Oops!"
