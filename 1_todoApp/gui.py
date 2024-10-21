@@ -46,14 +46,14 @@ def main():
     while True:
         eventName, values = window.read(timeout=500)
 
+        if eventName in (None, sg.WIN_CLOSED, "btn_Exit"):
+            break
+
         today = dtf.formatDateTime()
         wu.updateWindow(window, "lbl_Today", "text", today)
         # print(f"Event Name (key=): {eventName}")
         # print(f"All the Values (values): {values}")
         # print()
-
-        if eventName in (None, sg.WIN_CLOSED, "btn_Exit"):
-            break
 
         match eventName:
             case "listBox_Todos":
