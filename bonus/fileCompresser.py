@@ -25,18 +25,14 @@ def main():
     window = sg.Window(title="Best compresser!", layout=layout)
     while True:
         eventName, values = window.read()
-        print(f"Event Name (key=): {eventName}")
-        print(f"All the Values (values): {values}")
-        print()
-
-        files = str(values["tb_Files"]).split(";")
-        target = str(values["tb_Target"])
 
         if eventName in (None, sg.WIN_CLOSED, "btn_Exit"):
             break
 
-        if eventName == "btn_Compress":
+        elif eventName == "btn_Compress":
             try:
+                files = str(values["tb_Files"]).split(";")
+                target = str(values["tb_Target"])
                 status = compress.toZip(files, target)
                 window["lbl_Output"].update(value=status)
 
