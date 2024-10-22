@@ -15,6 +15,13 @@ if not os.path.exists("data/.todos.txt"):
 
 todos = rw.readTodos(filePath)
 
+
+def addTodo():
+    todo = str(st.session_state["tb_Todo"]).strip().title() + "\n"
+    todos.append(todo)
+    rw.writeTodos(todos, filePath)
+
+
 st.title("Coolest To-Do App Ever!")
 st.subheader("Arch is the best")
 st.text(today)
@@ -24,4 +31,12 @@ st.title("My To-Dos")
 for todo in todos:
     st.checkbox(todo)
 
-st.text_input(label="", placeholder="Enter a To-Do here")
+st.text_input(
+    key="tb_Todo",
+    on_change=addTodo,
+    label="Enter a To-Do here",
+    label_visibility="hidden",
+    placeholder="Enter a To-Do here",
+)
+
+st.session_state
