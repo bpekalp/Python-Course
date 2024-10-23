@@ -21,6 +21,9 @@ elif uploadedImage:
 st.write("Here is your converted image:")
 
 if img:
-    grayScaleImage = Image.open(img)
-    grayScaleImage = grayScaleImage.convert("L")
-    st.image(grayScaleImage)
+    try:
+        grayScaleImage = Image.open(img)
+        grayScaleImage = grayScaleImage.convert("L")
+        st.image(grayScaleImage)
+    except Image.UnidentifiedImageError:
+        st.error("Please upload an image file.")
