@@ -2,7 +2,7 @@
 This repository contains all the source files of the projects I developed while following the [Python Mega Course](https://www.udemy.com/course/the-python-mega-course) by [Ardit Sulce](https://www.linkedin.com/in/arditsulce).
 
 # Web Apps
-You can find all the web apps I developed on [this website!](https://gbp-python-webapps.streamlit.app/)
+You can find all the web apps I developed on [this website!](https://gbp-py-webapps.streamlit.app/)
 
 ## To-Do App
 To-Do application comes with 3 variations:
