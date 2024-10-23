@@ -16,7 +16,7 @@ if cameraImage:
     img = cameraImage
 
 elif uploadedImage:
-    img = cameraImage
+    img = uploadedImage
 
 st.write("Here is your converted image:")
 
