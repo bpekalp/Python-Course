@@ -22,7 +22,7 @@ def addTodo():
     rw.writeTodos(todos, filePath)
 
 
-st.title("Coolest To-Do App Ever!")
+st.header("Coolest To-Do App Ever!")
 st.subheader("Arch is the best")
 st.write(today)
 
