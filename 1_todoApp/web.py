@@ -28,8 +28,13 @@ st.text(today)
 
 st.title("My To-Dos")
 
-for todo in todos:
-    st.checkbox(todo)
+for i, todo in enumerate(todos):
+    _key = f"{i}_{todo}"
+    checkbox = st.checkbox(todo, key=_key)
+    if checkbox:
+        todos.pop(i)
+        rw.writeTodos(todos, filePath)
+        st.rerun()
 
 st.text_input(
     key="tb_Todo",
