@@ -24,7 +24,7 @@ def addTodo():
 
 st.title("Coolest To-Do App Ever!")
 st.subheader("Arch is the best")
-st.text(today)
+st.write(today)
 
 st.title("My To-Dos")
 
