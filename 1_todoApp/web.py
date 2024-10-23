@@ -10,7 +10,7 @@ today = str(dtf.formatDateTime())
 if not os.path.exists(os.path.dirname(filePath)):
     os.makedirs(os.path.dirname(filePath))
 
-if not os.path.exists("data/.todos.txt"):
+if not os.path.exists(filePath):
     rw.writeTodos(todos, filePath)
 
 todos = rw.readTodos(filePath)
