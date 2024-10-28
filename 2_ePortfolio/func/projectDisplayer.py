@@ -11,10 +11,11 @@ def displayProject(project):
     title = project["title"]
     desc = project["description"]
     url = project["url"]
+    source = f"[Source code]({url})"
     imgPath = "2_ePortfolio/datasource/images"
     imgName = project["image"]
     img = str(pl.Path(imgPath, imgName))
     st.subheader(title)
     st.image(img)
     st.write(desc)
-    st.write(url)
+    st.markdown(source)
