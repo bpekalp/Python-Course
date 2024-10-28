@@ -9,9 +9,9 @@ with st.form(key="form_email"):
         key="tb_userEmail",
     )
     userMessage = st.text_area(
-        label="Your E-Mail...",
+        label="Your Message...",
         label_visibility="hidden",
-        placeholder="Your E-Mail...",
+        placeholder="Your Message...",
         key="tb_userMessage",
     )
     submit = st.form_submit_button("Submit")
