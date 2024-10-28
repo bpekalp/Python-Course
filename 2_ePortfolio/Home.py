@@ -27,7 +27,7 @@ Cillum nulla culpa velit nisi cupidatat consequat nisi incididunt exercitation c
 st.write(content)
 
 projects = pd.read_csv("2_ePortfolio/datasource/data.csv", sep=";")
-left2, right2 = st.columns(2)
+left2, mid2, right2 = st.columns([3, 1, 3])
 
 with left2:
     for i, project in projects.iterrows():
