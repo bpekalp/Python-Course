@@ -47,4 +47,4 @@ Keep in mind: The sender is {_sender} but it will show up as {email}, you will b
         return "success"
 
     except Exception as e:
-        return f"An error occured while sending the e-mail: {e}"
+        return e
