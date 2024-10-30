@@ -3,6 +3,16 @@ import pandas as pd
 
 
 def addFooter(_pdf, _topic):
+    """Add a footer to the PDF page.
+
+    This function adds a footer containing the page number and topic title
+    to the specified PDF page.
+
+    Args:
+        _pdf (FPDF): The FPDF instance representing the PDF document.
+        _topic (dict): A dictionary containing the topic information,
+            which must include the key "Topic" with the title as its value.
+    """
     _size = 8
     _pdf.set_y(-1.5 * _size)
     _pdf.set_font("Arial", "I", _size)
