@@ -2,7 +2,7 @@ import streamlit as st
 import func.emailSender as fes
 
 st.header("Contact Me!")
-with st.form(key="form_email"):
+with st.form(key="form_contactMe"):
     userName = st.text_input(
         label="Your Name",
         label_visibility="collapsed",
@@ -27,12 +27,17 @@ if submit:
     name = str(st.session_state["tb_userName"]).strip().title()
     sender = st.session_state["tb_userEmail"]
     message = st.session_state["tb_userMessage"]
-    status = fes.sendEmail(name, sender, message)
 
-    if status == "success":
-        st.success("Your e-mail was sent successfully!")
+    if not userName or not userMail or not userMessage:
+        st.error("Please fill the form before sending.")
 
     else:
-        st.error(status)
+        status = fes.sendEmail(name, sender, message)
+
+        if status == "success":
+            st.success("Your e-mail was sent successfully!")
+
+        else:
+            st.error(f"An error occured: {status}")
 
 st.session_state
