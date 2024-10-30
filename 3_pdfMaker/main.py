@@ -20,7 +20,7 @@ def addFooter(_pdf, _topic):
     _pdf.cell(
         w=0,
         h=_size,
-        txt=f"Page {pdf.page_no()}, {_topic["Topic"]}",
+        txt=f"Page {_pdf.page_no()}, {_topic["Topic"]}",
         border=0,
         ln=0,
         align="R",
