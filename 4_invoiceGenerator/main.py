@@ -11,7 +11,7 @@ for filePath in filePaths:
     df = pd.read_excel(filePath)
     # print(f"Data Frame: {df}\n")
 
-    filePath = filePath.lstrip(f"{dataFolder}/").rstrip(".xlsx")
+    filePath = os.path.splitext(os.path.basename(filePath))[0]
     # print(f"File Path: {filePath}\n")
 
     index, date = filePath.split("-")
