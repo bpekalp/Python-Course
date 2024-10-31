@@ -2,6 +2,7 @@ import pandas as pd
 import glob as gl
 import datetime
 from fpdf import FPDF
+import os
 
 dataFolder = "4_invoiceGenerator/datasource"
 filePaths = gl.glob(f"{dataFolder}/*.xlsx")
@@ -32,13 +33,16 @@ for filePath in filePaths:
     pdf.add_page()
 
     size = 16
-    pdf.set_font(family="Arial", style="b", size=size)
+    pdf.set_font(family="Helvetica", style="b", size=size)
     pdf.cell(w=0, h=size/2.0, txt=fIndex, ln=1)
     pdf.cell(w=0, h=size/2.0, txt=fDate, ln=1)
 
     dfTuple = tuple(map(tuple, df.values))
     # print(f"Tuple: {dfTuple}\n")
 
-    pdf.output(f"{index}.pdf")
+    if not os.path.exists("PDFs/"):
+        os.makedirs("PDFs/")
+
+    pdf.output(f"PDFs/{index}.pdf")
 
     # print("End of iteration.\n")
