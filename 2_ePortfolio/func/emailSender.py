@@ -20,7 +20,7 @@ def sendEmail(_name, _sender, _message):
     port = 465
     context = ssl.create_default_context()
 
-    with open("secrets/contactMe.json") as file:
+    with open("secrets/mail.json") as file:
         secrets = file.read()
 
     secrets = json.loads(secrets)
