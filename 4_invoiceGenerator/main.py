@@ -34,11 +34,43 @@ for filePath in filePaths:
 
     size = 16
     pdf.set_font(family="Helvetica", style="b", size=size)
-    pdf.cell(w=0, h=size/2.0, txt=fIndex, ln=1)
-    pdf.cell(w=0, h=size/2.0, txt=fDate, ln=1)
+    pdf.cell(w=0, h=size/1.5, txt=fIndex, ln=1)
+    pdf.cell(w=0, h=size/1.5, txt=fDate, ln=1)
 
-    dfTuple = tuple(map(tuple, df.values))
-    # print(f"Tuple: {dfTuple}\n")
+    size = 12
+    pdf.set_font(family="Helvetica", style="b", size=size)
+    pdf.cell(w=24, h=size/1.5, border=1, txt="Product ID")
+    pdf.cell(w=48, h=size/1.5, border=1, txt="Product Name")
+    pdf.cell(w=48, h=size/1.5, border=1, txt="Purchased Amount")
+    pdf.cell(w=36, h=size/1.5, border=1, txt="Price Per Unit")
+    pdf.cell(w=24, h=size/1.5, border=1, txt="Total Price", ln=1)
+
+    size = 10
+    pdf.set_font(family="Helvetica", size=size)
+    for i, row in df.iterrows():
+        pdf.cell(w=24, h=size/1.5, border=1, txt=str(row["product_id"]))
+        pdf.cell(w=48, h=size/1.5, border=1, txt=str(row["product_name"]))
+        pdf.cell(w=48, h=size/1.5, border=1, txt=str(row["amount_purchased"]))
+        pdf.cell(w=36, h=size/1.5, border=1, txt=str(row["price_per_unit"]))
+        pdf.cell(w=24, h=size/1.5, border=1, txt=str(row["total_price"]), ln=1)
+
+    totalPrice = df["total_price"].sum()
+
+    size = 12
+    pdf.set_font(family="Helvetica", size=size)
+    pdf.cell(w=24, h=size/1.5)
+    pdf.cell(w=48, h=size/1.5)
+    pdf.cell(w=48, h=size/1.5)
+
+    pdf.set_font(family="Helvetica", style="b", size=size)
+    pdf.cell(w=36, h=size/1.5, border=1, txt="Total")
+
+    pdf.set_font(family="Helvetica", size=size)
+    pdf.cell(w=24, h=size/1.5, border=1, txt=str(totalPrice), ln=1)
+
+    pdf.cell(w=0, h=size, border=0,
+             txt=f"The total due amount is {totalPrice}$", ln=1)
+    pdf.image("4_invoiceGenerator/datasource/pythonhow.png", w=12)
 
     if not os.path.exists("PDFs/"):
         os.makedirs("PDFs/")
