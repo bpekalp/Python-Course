@@ -73,7 +73,7 @@ def sendMail(_mailMail, _mailPassword, _message):
     _username = _mailMail
     _password = _mailPassword
 
-    _reciever = "gbppythonapps@gmail.com"
+    _reciever = _username
     _context = ssl.create_default_context()
 
     try:
