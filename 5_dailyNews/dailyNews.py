@@ -91,17 +91,17 @@ mailMail, mailPassword = getSmtpKey()
 
 newsArticles = newsContent["articles"]
 
+subject = "Subject: Daily news for"\
+    f"{datetime.date.today().strftime('%d/%m/%Y')}\n\n"
 body = ""
 for article in newsArticles:
-    body = f"""\
-Subject: Daily news for {datetime.date.today().strftime("%d/%m/%Y")}
-{body} {article["title"]}
-{article["description"]}
-{article["url"]}
+    body += f"{article['title']}"\
+        f"\n{article['description']}"\
+        f"\n{article['url']}\n\n"
 
-    """
+message = subject + body
 
-mailStatus = sendMail(mailMail, mailPassword, body)
+mailStatus = sendMail(mailMail, mailPassword, message)
 
 match mailStatus:
     case "success":
