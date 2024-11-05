@@ -1,8 +1,7 @@
 import flask
 
-app = flask.Flask("flaskApp",
-                  template_folder="6_weatherAPI/templates",
-                  static_folder="6_weatherAPI/static")
+app = flask.Flask(__name__, template_folder="templates",
+                  static_folder="static")
 
 
 @app.route("/")
