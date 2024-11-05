@@ -30,10 +30,11 @@ def getBusinessNews(_newsKey):
     Returns:
         dict: A dictionary containing the response JSON with news headlines.
     """
-    _url = "https://newsapi.org/v2/" \
-        "top-headlines?language=en" \
+    _url = f"https://newsapi.org/v2/"\
+        "top-headlines"\
+        "?country=us"\
+        "&category=business"\
         f"&apiKey={_newsKey}"
-
     _newsRequest = requests.get(_url)
     _newsContent = _newsRequest.json()
     return _newsContent
