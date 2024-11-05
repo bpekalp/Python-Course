@@ -163,6 +163,6 @@ cython_debug/
 
 # Project Files
 data/
-bonus/files/
 secrets/
 PDFs/
+images/
