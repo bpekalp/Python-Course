@@ -63,6 +63,30 @@ And finally, you can install the required libraries and run the applications. To
 pip install -r requirements.txt
 ```
 
+# API Usage
+
+Some of the applications in this repository require API keys. The keys should be stored in `.json` files as they are loaded into dictionaries in runtime. Before running the apps, you should get your own API keys and store them in the `secrets/` folder in the main directory.
+
+Obtain your API keys from [NASA](https://api.nasa.gov/), [NewsAPI](https://newsapi.org/) and [Google App Passwords](https://myaccount.google.com/apppasswords)
+
+For the `nasa.json` and `newsapi.json` files use the following format:
+
+```json
+{
+  "email": "user@example.com",
+  "apikey": "xyzabc"
+}
+```
+
+For the mail API, format is different. You should replace `apikey` with `password` as shown below:
+
+```json
+{
+  "email": "user@example.com",
+  "password": "123456"
+}
+```
+
 # Web Apps
 
 You can find all the web apps I developed on [this website!](https://gbp-py-webapps.streamlit.app/)
@@ -133,4 +157,14 @@ You can run the app by running the following command:
 
 ```bash
 python main.py
+```
+
+## Daily News
+
+The Daily News application uses [NewsAPI](newsapi.org) to fetch daily news and sends them into specified e-mail. It is hosted on [Python Anywhere](pythonanywhere.com) an it is fully functional.
+
+You can run the app by running the following command:
+
+```bash
+python dailyNews.py
 ```
