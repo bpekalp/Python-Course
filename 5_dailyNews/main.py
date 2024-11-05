@@ -30,9 +30,9 @@ def getBusinessNews(_newsKey):
     Returns:
         dict: A dictionary containing the response JSON with news headlines.
     """
-    _url = f"https://newsapi.org/v2/"\
-        f"top-headlines?country=us"\
-        f"&category=business&apiKey={_newsKey}"
+    _url = "https://newsapi.org/v2/" \
+        "top-headlines?language=en" \
+        f"&apiKey={_newsKey}"
 
     _newsRequest = requests.get(_url)
     _newsContent = _newsRequest.json()
@@ -96,7 +96,7 @@ for article in newsArticles:
 Subject: Daily news for {datetime.date.today().strftime("%d/%m/%Y")}
 {body} {article["title"]}
 {article["description"]}
-
+{article["url"]}
 
     """
 
