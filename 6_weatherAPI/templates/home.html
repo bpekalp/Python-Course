@@ -44,12 +44,39 @@
             <p>
                 To retrieve the weather data, you should send a GET request to the
                 following endpoint: <br>
-                <code> http://127.0.0.1:5000/api/station/date </code>
+                <code> http://127.0.0.1:5000/api/station_name/date </code>
             </p>
             <p>
                 For example: <br>
-                <code> http://127.0.0.1:5000/api/14/20241105 </code>
+                <code> http://127.0.0.1:5000/api/polis/20100123 </code> <br>
+                Will return the output: <br>
+                <code>
+                    {
+                        "date": "20100123",
+                        "station": "polis",
+                        "temperature": 14.6
+                      }
+                </code>
             </p>
+        </div>
+        <div>
+            <p>Below, you can find all the stations that are available for now:</p>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for station in stations %}
+                    <tr>
+                        <td>{{ station.STAID }}</td>
+                        <td>{{ station.STANAME }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
