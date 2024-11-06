@@ -28,11 +28,13 @@ def getTemperature(_station, _date):
 
     fileToRead = "TG_STAID" + str(station).zfill(6) + ".txt"
 
-    df = pd.read_csv(f"6_weatherAPI/weatherData/{fileToRead}", skiprows=20)
+    df = pd.read_csv(
+        f"6_weatherAPI/weatherData/{fileToRead}", skiprows=20, parse_dates=["    DATE"]
+    )
     df.columns = df.columns.str.strip()
     df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
 
-    temperature = df.loc[df["DATE"] == int(_date)]["TG"].squeeze() / 10.0
+    temperature = df.loc[df["DATE"] == _date]["TG"].squeeze() / 10.0
 
     return temperature
 
