@@ -13,20 +13,18 @@ def home():
     return flask.render_template("home.html", stations=stations)
 
 
-def getStationId(_station):
+def getStationName(_station):
     df = pd.read_csv("6_weatherAPI/weatherData/stations.txt", skiprows=17)
     df.columns = df.columns.str.strip()
     df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
 
-    station = df.loc[df["STANAME"] == str(_station).upper()]["STAID"].squeeze()
+    station = str(df.loc[df["STAID"] == int(_station)]["STANAME"].squeeze()).title()
 
     return station
 
 
 def getTemperature(_station, _date):
-    station = getStationId(_station)
-
-    fileToRead = "TG_STAID" + str(station).zfill(6) + ".txt"
+    fileToRead = "TG_STAID" + str(_station).zfill(6) + ".txt"
 
     df = pd.read_csv(
         f"6_weatherAPI/weatherData/{fileToRead}", skiprows=20, parse_dates=["    DATE"]
@@ -43,7 +41,13 @@ def getTemperature(_station, _date):
 def api(station, date):
 
     temperature = getTemperature(station, date)
-    return {"station": station, "date": date, "temperature": temperature}
+    stationName = getStationName(station)
+    return {
+        "station": station,
+        "stationName": stationName,
+        "date": date,
+        "temperature": temperature,
+    }
 
 
 if __name__ == "__main__":
