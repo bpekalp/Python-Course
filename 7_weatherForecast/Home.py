@@ -1,5 +1,7 @@
 import streamlit as st
 import plotly.express as px
+import func.weatherData as wd
+from datetime import datetime
 
 st.header("Best Weather Forecast App!")
 
@@ -10,17 +12,40 @@ weatherOpt = st.selectbox(
 )
 
 if location and day and weatherOpt:
-    message = f"{weatherOpt} For Next {day} Days In {location}"
+    message = (
+        f"{weatherOpt} for next {day} days in {location} for every 3 hours".title()
+    )
     st.subheader(message)
+    try:
+        forecast = wd.getData(location, day, weatherOpt)
+        dates = [element["dt_txt"] for element in forecast]
+        formattedDates = [
+            datetime.strptime(date, "%Y-%m-%d %H:%M:%S").strftime("%b %d, %Y - %H:%M")
+            for date in dates
+        ]
 
-    dates = ("2022-25-10", "2022-26-10", "2022-27-10")
-    temps = (14, 27, 34)
-    if weatherOpt == "Temperature":
-        plot = px.line(x=dates, y=temps, labels={"x": "Date", "y": "Temperature (C)"})
-        st.plotly_chart(plot)
+        if weatherOpt == "Temperature":
+            temperatures = [element["main"]["temp"] - 273.15 for element in forecast]
 
-    elif weatherOpt == "Sky":
-        pass
+            plot = px.line(
+                x=formattedDates,
+                y=temperatures,
+                labels={"x": "Date", "y": "Temperature (C)"},
+            )
+            st.plotly_chart(plot)
 
+        elif weatherOpt == "Sky":
+            sky = [element["weather"][0]["main"] for element in forecast]
+            imagePath = "7_weatherForecast/weatherImages"
+            skyToImg = {
+                "Clear": f"{imagePath}/Clear.png",
+                "Clouds": f"{imagePath}/Clouds.png",
+                "Rain": f"{imagePath}/Rain.png",
+                "Snow": f"{imagePath}/Snow.png",
+            }
+            images = [skyToImg[condition] for condition in sky]
 
-st.session_state
+            st.image(images, formattedDates, width=128)
+
+    except KeyError:
+        st.error("Please enter a valid location.")
