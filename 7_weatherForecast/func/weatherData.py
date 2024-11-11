@@ -15,9 +15,21 @@ def getData(location, forecastDays, weatherOpt):
     )
     response = requests.get(url)
     weatherData = response.json()
-    return weatherData
+    observations = 8 * forecastDays
+    forecast = weatherData["list"][:observations]
+
+    if weatherOpt == "Temperature":
+        elements = [element["main"]["temp"] for element in forecast]
+
+    elif weatherOpt == "Sky":
+        elements = [element["weather"][0]["main"] for element in forecast]
+
+    return forecast
 
 
 if __name__ == "__main__":
-    weather = getData("Istanbul", 1, 1)
-    print(weather)
+    temperatures = getData("Istanbul", 2, "Temperature")
+    print(temperatures)
+
+    sky = getData("Istanbul", 2, "Sky")
+    print(sky)
