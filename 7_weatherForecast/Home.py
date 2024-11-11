@@ -1,4 +1,5 @@
 import streamlit as st
+import plotly.express as px
 
 st.header("Best Weather Forecast App!")
 
@@ -15,3 +16,15 @@ subData = st.session_state["dl_SubData"]
 if location and day and subData:
     message = f"{subData} For Next {day} Days In {location}"
     st.subheader(message)
+
+    dates = ("2022-25-10", "2022-26-10", "2022-27-10")
+    temps = (14, 27, 34)
+    if subData == "Temperature":
+        plot = px.line(x=dates, y=temps, labels={"x": "Date", "y": "Temperature (C)"})
+        st.plotly_chart(plot)
+
+    elif subData == "Sky":
+        pass
+
+
+st.session_state
