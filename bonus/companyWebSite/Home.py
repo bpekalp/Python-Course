@@ -16,7 +16,7 @@ st.write(content)
 
 st.title("Meet The Crew!")
 
-workers = pd.read_csv("bonus/companyWebSite/datasource/data.csv")
+workers = pd.read_csv("bonus/companyWebSite/datas/data.csv")
 left, mid, right = st.columns(3)
 
 with left:
@@ -26,7 +26,7 @@ with left:
             lastName = str(worker["last name"]).upper()
             fullName = f"{firstName} {lastName}"
             role = worker["role"]
-            img = "bonus/companyWebSite/datasource/images/" + worker["image"]
+            img = "bonus/companyWebSite/datas/images/" + worker["image"]
             st.subheader(fullName)
             st.text(role)
             st.image(img)
@@ -38,7 +38,7 @@ with mid:
             lastName = str(worker["last name"]).upper()
             fullName = f"{firstName} {lastName}"
             role = worker["role"]
-            img = "bonus/companyWebSite/datasource/images/" + worker["image"]
+            img = "bonus/companyWebSite/datas/images/" + worker["image"]
             st.subheader(fullName)
             st.text(role)
             st.image(img)
@@ -50,7 +50,7 @@ with right:
             lastName = str(worker["last name"]).upper()
             fullName = f"{firstName} {lastName}"
             role = worker["role"]
-            img = "bonus/companyWebSite/datasource/images/" + worker["image"]
+            img = "bonus/companyWebSite/datas/images/" + worker["image"]
             st.subheader(fullName)
             st.text(role)
             st.image(img)

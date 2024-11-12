@@ -12,7 +12,7 @@ def displayProject(project):
     desc = project["description"]
     url = project["url"]
     source = f"[Source code]({url})"
-    imgPath = "2_ePortfolio/datasource/images"
+    imgPath = "2_ePortfolio/datas/images"
     imgName = project["image"]
     img = str(pl.Path(imgPath, imgName))
     st.subheader(title)

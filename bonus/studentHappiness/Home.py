@@ -16,7 +16,7 @@ st.header("Student Happiness Data")
 xAxis = st.selectbox("Select Data For X Axis", options=columns[1:])
 yAxis = st.selectbox("Select Data For Y Axis", options=columns[1:])
 
-df = pd.read_csv("bonus/studentHappiness/datasource/happy.csv")
+df = pd.read_csv("bonus/studentHappiness/datas/happy.csv")
 df.columns = columns
 
 plotX = df[xAxis]

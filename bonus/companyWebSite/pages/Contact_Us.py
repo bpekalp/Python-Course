@@ -40,7 +40,7 @@ Keep in mind: The sender is {_from} but it will show up as {email}, you will be 
         return e
 
 
-topics = pd.read_csv("bonus/companyWebSite/datasource/topics.csv")
+topics = pd.read_csv("bonus/companyWebSite/datas/topics.csv")
 
 with st.form(key="form_contactUs"):
     st.text_input(label="Your Name", key="tb_name")

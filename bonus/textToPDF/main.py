@@ -2,8 +2,8 @@ from fpdf import FPDF
 import glob
 import os
 
-dataSource = "bonus/textToPDF/datasource"
-fileNames = glob.glob(f"{dataSource}/*.txt")
+datas = "bonus/textToPDF/datas"
+fileNames = glob.glob(f"{datas}/*.txt")
 
 pdf = FPDF(orientation="p", unit="mm", format="a4")
 
@@ -21,7 +21,7 @@ for fileName in fileNames:
 
     size = 12
     pdf.set_font(family="Times", size=size)
-    pdf.multi_cell(w=0, h=size/2.0, txt=content)
+    pdf.multi_cell(w=0, h=size / 2.0, txt=content)
 
 if not os.path.exists("PDFs/"):
     os.makedirs("PDFs/")

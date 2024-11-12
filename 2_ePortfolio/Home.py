@@ -7,7 +7,7 @@ st.set_page_config(layout="wide")
 left1, right1 = st.columns(2)
 
 with left1:
-    st.image("2_ePortfolio/datasource/images/photo.png")
+    st.image("2_ePortfolio/datas/images/photo.png")
 
 with right1:
     content = """
@@ -26,7 +26,7 @@ Cillum nulla culpa velit nisi cupidatat consequat nisi incididunt exercitation c
 """
 st.write(content)
 
-projects = pd.read_csv("2_ePortfolio/datasource/data.csv", sep=";")
+projects = pd.read_csv("2_ePortfolio/datas/data.csv", sep=";")
 left2, mid2, right2 = st.columns([3, 1, 3])
 
 with left2:

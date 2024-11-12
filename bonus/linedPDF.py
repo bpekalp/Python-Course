@@ -23,7 +23,7 @@ def drawLines(_pdf, _lineX1, _lineX2, _lineY, _cursorY):
         _cursorY += 10
 
 
-topics = pd.read_csv("3_pdfMaker/datasource/topics.csv")
+topics = pd.read_csv("3_pdfMaker/datas/topics.csv")
 
 pdf = FPDF(orientation="P", unit="mm", format="A4")
 pdf.set_auto_page_break(auto=False, margin=0)

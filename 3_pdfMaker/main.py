@@ -27,7 +27,7 @@ def addFooter(_pdf, _topic):
     )
 
 
-topics = pd.read_csv("3_pdfMaker/datasource/topics.csv")
+topics = pd.read_csv("3_pdfMaker/datas/topics.csv")
 
 pdf = FPDF(orientation="portrait", unit="mm", format="A4")
 pdf.set_auto_page_break(auto=False, margin=0)
