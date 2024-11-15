@@ -67,9 +67,9 @@ pip install -r requirements.txt
 
 Some of the applications in this repository require API keys. The keys should be stored in `.json` files as they are loaded into dictionaries in runtime. Before running the apps, you should get your own API keys and store them in the `secrets/` folder in the main directory.
 
-Obtain your API keys from [NASA](https://api.nasa.gov/), [NewsAPI](https://newsapi.org/) and [Google App Passwords](https://myaccount.google.com/apppasswords)
+Obtain your API keys from [NASA](https://api.nasa.gov/), [NewsAPI](https://newsapi.org/), [Google App Passwords](https://myaccount.google.com/apppasswords) and [OpenWeatherMap](https://openweathermap.org/api).
 
-For the `nasa.json` and `newsapi.json` files use the following format:
+For the `nasa.json`, `newsapi.json` and `weatherapi.json` files use the following format:
 
 ```json
 {
@@ -129,6 +129,26 @@ You can launch the web app by visiting my [web apps site](https://gbp-py-webapps
 streamlit run home.py
 ```
 
+## Weather API
+
+The Weather API application, built using Flask, reads weather data provided by [European Climate Assessment & Dataset project](https://www.ecad.eu/) and processes API requests based on this data.
+
+You can launch the app by running the following command:
+
+```bash
+python main.py
+```
+
+## Weather Forecast Web App
+
+The Weather Forecast application retrieves weather data using [OpenWeatherMap's API](https://openweathermap.org/api) and displays a dynamic 5-day, 3-hour forecast for a specified location. It features temperatures shown as a line plot and sky conditions represented by icons.
+
+You can launch the app by running the following command:
+
+```bash
+streamlit run Home.py
+```
+
 # Console Apps
 
 ## PDF Maker
@@ -141,13 +161,16 @@ You can run the app by running the following command:
 python main.py
 ```
 
-### Title
+<div style="border: 2px solid black; padding: 10px;">
+<h3>Title</h3>
 
 ---
 
 (The generated files are empty so there is no content)
 
 _Page Number, Title_
+
+</div>
 
 ## Invoice Generator
 
@@ -167,4 +190,14 @@ You can run the app by running the following command:
 
 ```bash
 python dailyNews.py
+```
+
+## e-Book NLP
+
+The e-Book NLP application uses Regular Expressions and performs sentiment analysis on "Miracle In The Andes" by Fernando Parrado.
+
+You can run the app by opening the `.ipynb` files in VSCode with the necessary extensions installed, or by running the following command:
+
+```bash
+jupyter-lab
 ```
